@@ -58,6 +58,105 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;border:1px solid var(--
   <div class="card note">Mi bebecita hermosa, te hice esto pq sabes que me ENCANTAS DEMASIADOOO eres todo lo que siempre he querido y pesar de que pasen cosas malas entre nosotros siempre te voy a amar y querer sobre todas las cosas. Eres lo mejor de este mundo, gracias por elegirme mamorchi ❤️<small>8 de noviembre de 2026</small></div><div class="card note">Hola, mi vida. Esta página es para ti, y la iré llenando de recuerdos, canciones y cositas que quiero decirte. 💌</div>
   </div></div>
 <div id="lb" onclick="this.style.display='none'" style="display: none;"><img alt=""></div>
+<script id="data" type="application/json">{"title":"Para ti, mi amor","sub":"Un rinconcito solo nuestro 💗","photos":[{"url":"WhatsApp Image 2026-09-04 at 10.49.52 PM.jpeg","cap":""},{"url":"WhatsApp Image 2026-09-04 at 10.50.47 PM.jpeg","cap":""},{"url":"eb451599-fa37-4934-a48c-4535f7d9d574.jfif","cap":""},{"url":"aa876c47-a416-42d5-90b2-c8f3f74074af.jfif","cap":""}],"songs":[{"t":"Cuando Tus Ojos Me Ven","a":"uni","link":"https://open.spotify.com/intl-es/track/6IoFhWzXm4vMs7YaKrzR2Y?si=2624edc87a0047f7"}],"notes":[{"d":"","t":"Hola, mi vida. Esta página es para ti, y la iré llenando de recuerdos, canciones y cositas que quiero decirte. 💌"},{"t":"Mi bebecita hermosa, te hice esto pq sabes que me ENCANTAS DEMASIADOOO eres todo lo que siempre he querido y pesar de que pasen cosas malas entre nosotros siempre te voy a amar y querer sobre todas las cosas. Eres lo mejor de este mundo, gracias por elegirme mamorchi ❤️","d":"8 de noviembre de 2026"}],"drawings":[{"url":"Sin título.jpg","cap":""}]}</script>
+<script>
+const S=JSON.parse(document.getElementById('data').textContent);S.drawings=S.drawings||[];
+const COL=['#f4a6c3','#e0457b','#b980f0','#7ec8e3','#8fd694','#ffd27a','#ff9a76','#5a3a46'];let pen={c:COL[0],w:6,er:false},hist=[];
+let editing=false,art=null,assets=null,canEdit=false;
+const $=s=>document.querySelector(s);
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const safe=u=>/^https?:\/\//i.test(u||'')?esc(u):'';
+const X=(k,i)=>editing?`<button class="x" onclick="del('${k}',${i})" title="Quitar">✕</button>`:'';
+
+function render(){
+  const p=S.photos.map((f,i)=>`<figure>${X('photos',i)}<img src="${esc(f.url)}" alt="${esc(f.cap)}" onclick="zoom(this.src)">${f.cap?`<figcaption>${esc(f.cap)}</figcaption>`:''}</figure>`).join('');
+  const s=S.songs.map((g,i)=>`<div class="card song">${X('songs',i)}<b>🎵 ${esc(g.t)}</b><small>${esc(g.a)}</small>${g.audio?`<audio controls preload="none" src="${esc(g.audio)}"></audio>`:''}${safe(g.link)?`<div style="margin-top:8px"><a class="btn" href="${safe(g.link)}" target="_blank" rel="noopener">Escuchar ▶</a></div>`:''}</div>`).join('');
+  const n=S.notes.slice().reverse().map(m=>[m,S.notes.indexOf(m)]).map(([m,i])=>`<div class="card note">${X('notes',i)}${esc(m.t)}${m.d?`<small>${esc(m.d)}</small>`:''}</div>`).join('');
+  $('#app').innerHTML=`<header>${editing?`<input id="et" value="${esc(S.title)}"><input id="es" value="${esc(S.sub)}"><button onclick="saveHead()">Guardar título</button>`:`<h1>${esc(S.title)}</h1><div class="sub">${esc(S.sub)}</div>`}</header>
+  <h2>Nuestras fotos 📸</h2>
+  ${editing?`<div class="panel"><b>Agregar foto</b><input id="pc" placeholder="Pie de foto (opcional)"><input id="pf" type="file" accept="image/*" multiple><button onclick="addPhoto()">Subir</button><div class="hint" id="ps"></div></div>`:''}
+  ${p?`<div class="grid">${p}</div>`:'<p class="empty">Aquí irán nuestras fotos…</p>'}
+  <h2>Nuestras canciones 🎶</h2>
+  ${editing?`<div class="panel"><b>Agregar canción</b><input id="st" placeholder="Nombre de la canción"><input id="sa" placeholder="Artista"><input id="sl" placeholder="Enlace (Spotify, YouTube…) opcional"><input id="sf" type="file" accept="audio/*"><div class="hint">Si subes el audio (hasta 20 MB), se reproduce aquí mismo.</div><button onclick="addSong()">Agregar</button><div class="hint" id="ss"></div></div>`:''}
+  ${s||'<p class="empty">Aquí irán las canciones que son nuestras…</p>'}
+  <h2>Dibujitos para ti 🎨</h2>
+  ${editing?`<div class="panel"><b>Dibuja algo bonito</b><canvas id="cv" width="800" height="600"></canvas><div class="tools">${COL.map(c=>`<button class="sw${!pen.er&&pen.c===c?' on':''}" style="background:${c}" data-c="${c}" onclick="setC('${c}')" title="Color"></button>`).join('')}<button class="ghost" onclick="setEr()">🩹 Borrador</button><input type="range" min="2" max="30" value="${pen.w}" oninput="pen.w=+this.value"></div><div class="tools"><button class="ghost" onclick="undo()">↶ Deshacer</button><button class="ghost" onclick="clearCv()">Limpiar</button><input type="text" id="dc" placeholder="Título (opcional)"><button onclick="saveDraw()">Guardar dibujo</button></div><div class="hint" id="ds"></div></div>`:''}
+  ${S.drawings.length?`<div class="grid">${S.drawings.map((f,i)=>`<figure>${X('drawings',i)}<img src="${esc(f.url)}" alt="${esc(f.cap)}" onclick="zoom(this.src)">${f.cap?`<figcaption>${esc(f.cap)}</figcaption>`:''}</figure>`).join('')}</div>`:'<p class="empty">Aquí irán los dibujitos que te haré…</p>'}
+  <h2>Cartitas para ti 💌</h2>
+  ${editing?`<div class="panel"><b>Escribirle algo</b><textarea id="nt" rows="4" placeholder="Escribe aquí lo que quieres decirle…"></textarea><button onclick="addNote()">Publicar</button></div>`:''}
+  ${n}
+  ${canEdit?`<div class="bar"><button onclick="toggle()">${editing?'✔ Listo':'✏️ Editar'}</button></div>`:''}`;
+  if(editing)initDraw();
+}
+let cx;
+function initDraw(){
+  const cv=$('#cv');cx=cv.getContext('2d');cx.lineCap=cx.lineJoin='round';cx.fillStyle='#fffafc';cx.fillRect(0,0,800,600);hist=[];
+  let on=false,lx,ly;
+  const pt=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*800/r.width,(e.clientY-r.top)*600/r.height]};
+  cv.onpointerdown=e=>{e.preventDefault();cv.setPointerCapture(e.pointerId);hist.push(cx.getImageData(0,0,800,600));if(hist.length>25)hist.shift();on=true;[lx,ly]=pt(e);dot(lx,ly)};
+  cv.onpointermove=e=>{if(!on)return;const[x,y]=pt(e);cx.strokeStyle=pen.er?'#fffafc':pen.c;cx.lineWidth=pen.w*(pen.er?2:1);cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(x,y);cx.stroke();lx=x;ly=y};
+  cv.onpointerup=cv.onpointercancel=()=>{on=false};
+}
+function dot(x,y){cx.fillStyle=pen.er?'#fffafc':pen.c;cx.beginPath();cx.arc(x,y,pen.w*(pen.er?1:.5),0,7);cx.fill()}
+function mark(){document.querySelectorAll('.sw').forEach(b=>b.classList.toggle('on',!pen.er&&b.dataset.c===pen.c))}
+function setC(c){pen.c=c;pen.er=false;mark()}
+function setEr(){pen.er=!pen.er;mark()}
+function undo(){const h=hist.pop();if(h)cx.putImageData(h,0,0)}
+function clearCv(){hist.push(cx.getImageData(0,0,800,600));cx.fillStyle='#fffafc';cx.fillRect(0,0,800,600)}
+async function saveDraw(){
+  if(!assets){$('#ds').textContent='La subida no está disponible.';return}
+  const cap=$('#dc').value.trim();$('#ds').textContent='Guardando…';
+  try{const b=await new Promise(r=>$('#cv').toBlob(r,'image/png'));const r=await assets.upload(b);S.drawings.push({url:r.url,cap})}
+  catch(e){$('#ds').textContent='Error al guardar: '+(e&&e.message||e);return}
+  save()
+}
+function zoom(u){const l=$('#lb');l.querySelector('img').src=u;l.style.display='flex'}
+function toggle(){editing=!editing;render()}
+
+async function save(){
+  if(!art)return;
+  const c=document.documentElement.cloneNode(true);
+  c.querySelector('#data').textContent=JSON.stringify(S).replace(/</g,'\\u003c');
+  c.querySelector('#app').innerHTML='';
+  const l=c.querySelector('#lb');l.style.display='none';l.querySelector('img').removeAttribute('src');
+  try{await art.publish('<!doctype html>\n'+c.outerHTML)}catch(e){alert('No se pudo guardar: '+(e&&e.code||e))}
+}
+function saveHead(){S.title=$('#et').value.trim()||S.title;S.sub=$('#es').value.trim();save()}
+function del(k,i){if(confirm('¿Quitar esto?')){S[k].splice(i,1);save()}}
+function addNote(){const t=$('#nt').value.trim();if(!t)return;S.notes.push({t,d:new Date().toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'})});save()}
+
+function shrink(f){return new Promise(r=>{if(!/^image\/(jpe?g|png|webp)$/i.test(f.type))return r(f);const im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>r(b||f),'image/jpeg',.85)};im.onerror=()=>r(f);im.src=URL.createObjectURL(f)})}
+async function addPhoto(){
+  const fs=[...$('#pf').files];if(!fs.length)return;
+  if(!assets){$('#ps').textContent='La subida no está disponible.';return}
+  const cap=$('#pc').value.trim();
+  try{for(let i=0;i<fs.length;i++){$('#ps').textContent=`Subiendo ${i+1} de ${fs.length}…`;const r=await assets.upload(await shrink(fs[i]));S.photos.push({url:r.url,cap})}}
+  catch(e){$('#ps').textContent='Error al subir: '+(e&&e.message||e);return}
+  save()
+}
+async function addSong(){
+  const t=$('#st').value.trim();if(!t)return;
+  const g={t,a:$('#sa').value.trim(),link:$('#sl').value.trim()};
+  const f=$('#sf').files[0];
+  if(f){if(!assets){$('#ss').textContent='La subida no está disponible.';return}
+    try{$('#ss').textContent='Subiendo audio…';g.audio=(await assets.upload(f)).url}catch(e){$('#ss').textContent='Error al subir: '+(e&&e.message||e);return}}
+  S.songs.push(g);save()
+}
+
+render();
+(async()=>{
+  if(!window.claude)return;
+  try{
+    const u=await claude.use('user');canEdit=!!(u&&u.canEdit&&u.canEdit());
+    if(canEdit){art=await claude.use('artifact');assets=await claude.use('assets');canEdit=!!art;render()}
+  }catch(e){}
+})();
+</script>
+
+
+
+</body></html>
+
 <script>
 const S=JSON.parse(document.getElementById('data').textContent);S.drawings=S.drawings||[];
 const COL=['#f4a6c3','#e0457b','#b980f0','#7ec8e3','#8fd694','#ffd27a','#ff9a76','#5a3a46'];let pen={c:COL[0],w:6,er:false},hist=[];
