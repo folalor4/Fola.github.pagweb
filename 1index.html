@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es" data-theme="dark" style="color-scheme: dark;"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para ti 💗</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&amp;family=Nunito:wght@400;600&amp;display=swap">
+<style>
+:root{--bg:#fff0f5;--card:#ffffff;--ink:#5a3a46;--soft:#9b7483;--pink:#f8c8dc;--pink2:#f4a6c3;--line:#f6d9e5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b1e25;--card:#3a2a33;--ink:#fbe4ee;--soft:#d3a9bb;--pink:#7a4a5f;--pink2:#e58fb2;--line:#55394a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#2b1e25;--card:#3a2a33;--ink:#fbe4ee;--soft:#d3a9bb;--pink:#7a4a5f;--pink2:#e58fb2;--line:#55394a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+header{text-align:center;padding:36px 10px 18px}
+h1{font-family:'Dancing Script',cursive,serif;font-size:clamp(2.6rem,9vw,4.2rem);margin:0;color:var(--pink2)}
+.sub{color:var(--soft);font-size:1.1rem;margin-top:4px}
+h2{font-family:'Dancing Script',cursive,serif;font-size:2rem;margin:42px 0 14px;color:var(--pink2);text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+figure{margin:0;background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(244,166,195,.25);position:relative}
+figure img{width:100%;aspect-ratio:1;object-fit:cover;display:block;cursor:zoom-in}
+figcaption{padding:8px 12px;font-size:.9rem;color:var(--soft);text-align:center}
+.card{background:var(--card);border-radius:18px;padding:14px 16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(244,166,195,.2);position:relative}
+.song b{display:block}.song small{color:var(--soft)}
+audio{width:100%;margin-top:8px}
+a.btn,button{font:inherit;border:0;border-radius:999px;background:var(--pink2);color:#fff;padding:8px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+button.ghost{background:var(--pink);color:var(--ink)}
+button.x{position:absolute;top:8px;right:8px;padding:2px 9px;background:var(--pink);color:var(--ink)}
+.note{white-space:pre-wrap}.note small{display:block;color:var(--soft);margin-top:6px}
+.empty{text-align:center;color:var(--soft)}
+input,textarea{font:inherit;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);margin:4px 0}
+.panel{border:2px dashed var(--pink2);border-radius:18px;padding:14px;margin-bottom:14px;background:var(--card)}
+.bar{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:5}
+#lb{position:fixed;inset:0;background:rgba(40,20,30,.85);display:none;align-items:center;justify-content:center;z-index:9}
+#lb img{max-width:94%;max-height:90%;border-radius:12px}
+.hint{font-size:.85rem;color:var(--soft)}
+#cv{width:100%;aspect-ratio:4/3;background:#fffafc;border-radius:14px;touch-action:none;cursor:crosshair;display:block;border:1px solid var(--line)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.sw{width:28px;height:28px;border-radius:50%;padding:0;border:3px solid transparent;box-shadow:0 0 0 1px var(--line)}
+.sw.on{border-color:var(--ink)}
+.tools input[type=range]{width:110px;margin:0}
+.tools input[type=text]{flex:1;min-width:140px}
+</style>
+</head>
+<body>
+<div class="wrap"><div id="app"><header><h1>Para ti, mi amor</h1><div class="sub">Un rinconcito solo nuestro 💗</div></header>
+  <h2>Nuestras fotos 📸</h2>
+  
+  <div class="grid"><figure><img src="WhatsApp Image 2026-09-04 at 10.49.52 PM.jpeg" alt="" onclick="zoom(this.src)"></figure><figure><img src="WhatsApp Image 2026-09-04 at 10.50.47 PM.jpeg" alt="" onclick="zoom(this.src)"></figure><figure><img src="eb451599-fa37-4934-a48c-4535f7d9d574.jfif" alt="" onclick="zoom(this.src)"></figure><figure><img src="aa876c47-a416-42d5-90b2-c8f3f74074af.jfif" alt="" onclick="zoom(this.src)"></figure></div>
+  <h2>Nuestras canciones 🎶</h2>
+  
+  <div class="card song"><b>🎵 Cuando Tus Ojos Me Ven</b><small>uni</small><div style="margin-top:8px"><a class="btn" href="https://open.spotify.com/intl-es/track/6IoFhWzXm4vMs7YaKrzR2Y?si=2624edc87a0047f7" target="_blank" rel="noopener">Escuchar ▶</a></div></div>
+  <h2>Dibujitos para ti 🎨</h2>
+  
+  <div class="grid"><figure><img src="Sin título.jpg" alt="" onclick="zoom(this.src)"></figure></div>
+  <h2>Cartitas para ti 💌</h2>
+  
+  <div class="card note">Mi bebecita hermosa, te hice esto pq sabes que me ENCANTAS DEMASIADOOO eres todo lo que siempre he querido y pesar de que pasen cosas malas entre nosotros siempre te voy a amar y querer sobre todas las cosas. Eres lo mejor de este mundo, gracias por elegirme mamorchi ❤️<small>8 de noviembre de 2026</small></div><div class="card note">Hola, mi vida. Esta página es para ti, y la iré llenando de recuerdos, canciones y cositas que quiero decirte. 💌</div>
+  </div></div>
+<div id="lb" onclick="this.style.display='none'" style="display: none;"><img alt=""></div>
+<script id="data" type="application/json">{"title":"Para ti, mi amor","sub":"Un rinconcito solo nuestro 💗","photos":[{"url":"/_blob/a2e98a0d554b4ef324947831ef42414f","cap":""},{"url":"/_blob/52d2dbf755c6c95dbfd7c22f709d47d2","cap":""},{"url":"/_blob/4172acf0c3d8d67be9031527ae030f6f","cap":""},{"url":"/_blob/d76cfc682565588936b7a3c72730091c","cap":""}],"songs":[{"t":"Cuando Tus Ojos Me Ven","a":"uni","link":"https://open.spotify.com/intl-es/track/6IoFhWzXm4vMs7YaKrzR2Y?si=2624edc87a0047f7"}],"notes":[{"d":"","t":"Hola, mi vida. Esta página es para ti, y la iré llenando de recuerdos, canciones y cositas que quiero decirte. 💌"},{"t":"Mi bebecita hermosa, te hice esto pq sabes que me ENCANTAS DEMASIADOOO eres todo lo que siempre he querido y pesar de que pasen cosas malas entre nosotros siempre te voy a amar y querer sobre todas las cosas. Eres lo mejor de este mundo, gracias por elegirme mamorchi ❤️","d":"8 de noviembre de 2026"}],"drawings":[{"url":"/_blob/7953088cf787cba80e24b4c5a4d96e91","cap":""}]}</script>
+<script>
+const S=JSON.parse(document.getElementById('data').textContent);S.drawings=S.drawings||[];
+const COL=['#f4a6c3','#e0457b','#b980f0','#7ec8e3','#8fd694','#ffd27a','#ff9a76','#5a3a46'];let pen={c:COL[0],w:6,er:false},hist=[];
+let editing=false,art=null,assets=null,canEdit=false;
+const $=s=>document.querySelector(s);
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const safe=u=>/^https?:\/\//i.test(u||'')?esc(u):'';
+const X=(k,i)=>editing?`<button class="x" onclick="del('${k}',${i})" title="Quitar">✕</button>`:'';
+
+function render(){
+  const p=S.photos.map((f,i)=>`<figure>${X('photos',i)}<img src="${esc(f.url)}" alt="${esc(f.cap)}" onclick="zoom(this.src)">${f.cap?`<figcaption>${esc(f.cap)}</figcaption>`:''}</figure>`).join('');
+  const s=S.songs.map((g,i)=>`<div class="card song">${X('songs',i)}<b>🎵 ${esc(g.t)}</b><small>${esc(g.a)}</small>${g.audio?`<audio controls preload="none" src="${esc(g.audio)}"></audio>`:''}${safe(g.link)?`<div style="margin-top:8px"><a class="btn" href="${safe(g.link)}" target="_blank" rel="noopener">Escuchar ▶</a></div>`:''}</div>`).join('');
+  const n=S.notes.slice().reverse().map(m=>[m,S.notes.indexOf(m)]).map(([m,i])=>`<div class="card note">${X('notes',i)}${esc(m.t)}${m.d?`<small>${esc(m.d)}</small>`:''}</div>`).join('');
+  $('#app').innerHTML=`<header>${editing?`<input id="et" value="${esc(S.title)}"><input id="es" value="${esc(S.sub)}"><button onclick="saveHead()">Guardar título</button>`:`<h1>${esc(S.title)}</h1><div class="sub">${esc(S.sub)}</div>`}</header>
+  <h2>Nuestras fotos 📸</h2>
+  ${editing?`<div class="panel"><b>Agregar foto</b><input id="pc" placeholder="Pie de foto (opcional)"><input id="pf" type="file" accept="image/*" multiple><button onclick="addPhoto()">Subir</button><div class="hint" id="ps"></div></div>`:''}
+  ${p?`<div class="grid">${p}</div>`:'<p class="empty">Aquí irán nuestras fotos…</p>'}
+  <h2>Nuestras canciones 🎶</h2>
+  ${editing?`<div class="panel"><b>Agregar canción</b><input id="st" placeholder="Nombre de la canción"><input id="sa" placeholder="Artista"><input id="sl" placeholder="Enlace (Spotify, YouTube…) opcional"><input id="sf" type="file" accept="audio/*"><div class="hint">Si subes el audio (hasta 20 MB), se reproduce aquí mismo.</div><button onclick="addSong()">Agregar</button><div class="hint" id="ss"></div></div>`:''}
+  ${s||'<p class="empty">Aquí irán las canciones que son nuestras…</p>'}
+  <h2>Dibujitos para ti 🎨</h2>
+  ${editing?`<div class="panel"><b>Dibuja algo bonito</b><canvas id="cv" width="800" height="600"></canvas><div class="tools">${COL.map(c=>`<button class="sw${!pen.er&&pen.c===c?' on':''}" style="background:${c}" data-c="${c}" onclick="setC('${c}')" title="Color"></button>`).join('')}<button class="ghost" onclick="setEr()">🩹 Borrador</button><input type="range" min="2" max="30" value="${pen.w}" oninput="pen.w=+this.value"></div><div class="tools"><button class="ghost" onclick="undo()">↶ Deshacer</button><button class="ghost" onclick="clearCv()">Limpiar</button><input type="text" id="dc" placeholder="Título (opcional)"><button onclick="saveDraw()">Guardar dibujo</button></div><div class="hint" id="ds"></div></div>`:''}
+  ${S.drawings.length?`<div class="grid">${S.drawings.map((f,i)=>`<figure>${X('drawings',i)}<img src="${esc(f.url)}" alt="${esc(f.cap)}" onclick="zoom(this.src)">${f.cap?`<figcaption>${esc(f.cap)}</figcaption>`:''}</figure>`).join('')}</div>`:'<p class="empty">Aquí irán los dibujitos que te haré…</p>'}
+  <h2>Cartitas para ti 💌</h2>
+  ${editing?`<div class="panel"><b>Escribirle algo</b><textarea id="nt" rows="4" placeholder="Escribe aquí lo que quieres decirle…"></textarea><button onclick="addNote()">Publicar</button></div>`:''}
+  ${n}
+  ${canEdit?`<div class="bar"><button onclick="toggle()">${editing?'✔ Listo':'✏️ Editar'}</button></div>`:''}`;
+  if(editing)initDraw();
+}
+let cx;
+function initDraw(){
+  const cv=$('#cv');cx=cv.getContext('2d');cx.lineCap=cx.lineJoin='round';cx.fillStyle='#fffafc';cx.fillRect(0,0,800,600);hist=[];
+  let on=false,lx,ly;
+  const pt=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*800/r.width,(e.clientY-r.top)*600/r.height]};
+  cv.onpointerdown=e=>{e.preventDefault();cv.setPointerCapture(e.pointerId);hist.push(cx.getImageData(0,0,800,600));if(hist.length>25)hist.shift();on=true;[lx,ly]=pt(e);dot(lx,ly)};
+  cv.onpointermove=e=>{if(!on)return;const[x,y]=pt(e);cx.strokeStyle=pen.er?'#fffafc':pen.c;cx.lineWidth=pen.w*(pen.er?2:1);cx.beginPath();cx.moveTo(lx,ly);cx.lineTo(x,y);cx.stroke();lx=x;ly=y};
+  cv.onpointerup=cv.onpointercancel=()=>{on=false};
+}
+function dot(x,y){cx.fillStyle=pen.er?'#fffafc':pen.c;cx.beginPath();cx.arc(x,y,pen.w*(pen.er?1:.5),0,7);cx.fill()}
+function mark(){document.querySelectorAll('.sw').forEach(b=>b.classList.toggle('on',!pen.er&&b.dataset.c===pen.c))}
+function setC(c){pen.c=c;pen.er=false;mark()}
+function setEr(){pen.er=!pen.er;mark()}
+function undo(){const h=hist.pop();if(h)cx.putImageData(h,0,0)}
+function clearCv(){hist.push(cx.getImageData(0,0,800,600));cx.fillStyle='#fffafc';cx.fillRect(0,0,800,600)}
+async function saveDraw(){
+  if(!assets){$('#ds').textContent='La subida no está disponible.';return}
+  const cap=$('#dc').value.trim();$('#ds').textContent='Guardando…';
+  try{const b=await new Promise(r=>$('#cv').toBlob(r,'image/png'));const r=await assets.upload(b);S.drawings.push({url:r.url,cap})}
+  catch(e){$('#ds').textContent='Error al guardar: '+(e&&e.message||e);return}
+  save()
+}
+function zoom(u){const l=$('#lb');l.querySelector('img').src=u;l.style.display='flex'}
+function toggle(){editing=!editing;render()}
+
+async function save(){
+  if(!art)return;
+  const c=document.documentElement.cloneNode(true);
+  c.querySelector('#data').textContent=JSON.stringify(S).replace(/</g,'\\u003c');
+  c.querySelector('#app').innerHTML='';
+  const l=c.querySelector('#lb');l.style.display='none';l.querySelector('img').removeAttribute('src');
+  try{await art.publish('<!doctype html>\n'+c.outerHTML)}catch(e){alert('No se pudo guardar: '+(e&&e.code||e))}
+}
+function saveHead(){S.title=$('#et').value.trim()||S.title;S.sub=$('#es').value.trim();save()}
+function del(k,i){if(confirm('¿Quitar esto?')){S[k].splice(i,1);save()}}
+function addNote(){const t=$('#nt').value.trim();if(!t)return;S.notes.push({t,d:new Date().toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'})});save()}
+
+function shrink(f){return new Promise(r=>{if(!/^image\/(jpe?g|png|webp)$/i.test(f.type))return r(f);const im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>r(b||f),'image/jpeg',.85)};im.onerror=()=>r(f);im.src=URL.createObjectURL(f)})}
+async function addPhoto(){
+  const fs=[...$('#pf').files];if(!fs.length)return;
+  if(!assets){$('#ps').textContent='La subida no está disponible.';return}
+  const cap=$('#pc').value.trim();
+  try{for(let i=0;i<fs.length;i++){$('#ps').textContent=`Subiendo ${i+1} de ${fs.length}…`;const r=await assets.upload(await shrink(fs[i]));S.photos.push({url:r.url,cap})}}
+  catch(e){$('#ps').textContent='Error al subir: '+(e&&e.message||e);return}
+  save()
+}
+async function addSong(){
+  const t=$('#st').value.trim();if(!t)return;
+  const g={t,a:$('#sa').value.trim(),link:$('#sl').value.trim()};
+  const f=$('#sf').files[0];
+  if(f){if(!assets){$('#ss').textContent='La subida no está disponible.';return}
+    try{$('#ss').textContent='Subiendo audio…';g.audio=(await assets.upload(f)).url}catch(e){$('#ss').textContent='Error al subir: '+(e&&e.message||e);return}}
+  S.songs.push(g);save()
+}
+
+render();
+(async()=>{
+  if(!window.claude)return;
+  try{
+    const u=await claude.use('user');canEdit=!!(u&&u.canEdit&&u.canEdit());
+    if(canEdit){art=await claude.use('artifact');assets=await claude.use('assets');canEdit=!!art;render()}
+  }catch(e){}
+})();
+</script>
+
+
+
+</body></html>
