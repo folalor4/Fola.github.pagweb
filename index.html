@@ -43,7 +43,20 @@ input,textarea{font:inherit;width:100%;padding:10px 12px;border:1px solid var(--
 </style>
 </head>
 <body>
-<div class="wrap"><div id="app"></div></div>
+<div class="wrap"><div id="app"><header><h1>Para ti, mi amor</h1><div class="sub">Un rinconcito solo nuestro 💗</div></header>
+  <h2>Nuestras fotos 📸</h2>
+  
+  <div class="grid"><figure><img src="WhatsApp Image 2026-09-04 at 10.49.52 PM.jpeg" alt="" onclick="zoom(this.src)"></figure><figure><img src="WhatsApp Image 2026-09-04 at 10.50.47 PM.jpeg" alt="" onclick="zoom(this.src)"></figure><figure><img src="eb451599-fa37-4934-a48c-4535f7d9d574.jfif" alt="" onclick="zoom(this.src)"></figure><figure><img src="aa876c47-a416-42d5-90b2-c8f3f74074af.jfif" alt="" onclick="zoom(this.src)"></figure></div>
+  <h2>Nuestras canciones 🎶</h2>
+  
+  <div class="card song"><b>🎵 Cuando Tus Ojos Me Ven</b><small>uni</small><div style="margin-top:8px"><a class="btn" href="https://open.spotify.com/intl-es/track/6IoFhWzXm4vMs7YaKrzR2Y?si=2624edc87a0047f7" target="_blank" rel="noopener">Escuchar ▶</a></div></div>
+  <h2>Dibujitos para ti 🎨</h2>
+  
+  <div class="grid"><figure><img src="Sin título.jpg" alt="" onclick="zoom(this.src)"></figure></div>
+  <h2>Cartitas para ti 💌</h2>
+  
+  <div class="card note">Mi bebecita hermosa, te hice esto pq sabes que me ENCANTAS DEMASIADOOO eres todo lo que siempre he querido y pesar de que pasen cosas malas entre nosotros siempre te voy a amar y querer sobre todas las cosas. Eres lo mejor de este mundo, gracias por elegirme mamorchi ❤️<small>8 de noviembre de 2026</small></div><div class="card note">Hola, mi vida. Esta página es para ti, y la iré llenando de recuerdos, canciones y cositas que quiero decirte. 💌</div>
+  </div></div>
 <div id="lb" onclick="this.style.display='none'" style="display: none;"><img alt=""></div>
 <script id="data" type="application/json">{"title":"Para ti, mi amor","sub":"Un rinconcito solo nuestro 💗","photos":[{"url":"/_blob/a2e98a0d554b4ef324947831ef42414f","cap":""},{"url":"/_blob/52d2dbf755c6c95dbfd7c22f709d47d2","cap":""},{"url":"/_blob/4172acf0c3d8d67be9031527ae030f6f","cap":""},{"url":"/_blob/d76cfc682565588936b7a3c72730091c","cap":""}],"songs":[{"t":"Cuando Tus Ojos Me Ven","a":"uni","link":"https://open.spotify.com/intl-es/track/6IoFhWzXm4vMs7YaKrzR2Y?si=2624edc87a0047f7"}],"notes":[{"d":"","t":"Hola, mi vida. Esta página es para ti, y la iré llenando de recuerdos, canciones y cositas que quiero decirte. 💌"},{"t":"Mi bebecita hermosa, te hice esto pq sabes que me ENCANTAS DEMASIADOOO eres todo lo que siempre he querido y pesar de que pasen cosas malas entre nosotros siempre te voy a amar y querer sobre todas las cosas. Eres lo mejor de este mundo, gracias por elegirme mamorchi ❤️","d":"8 de noviembre de 2026"}],"drawings":[{"url":"/_blob/7953088cf787cba80e24b4c5a4d96e91","cap":""}]}</script>
 <script>
@@ -139,6 +152,7 @@ render();
   }catch(e){}
 })();
 </script>
+
 
 
 </body></html>
